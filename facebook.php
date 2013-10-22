@@ -10,15 +10,21 @@ class Facebook_Events_Facebook {
 	public function __construct( $settings ) {
 		$this->settings = $settings;
 
-		$this->fb = new Facebook(
-			array(
-				'appId'  => $this->settings['appId'],
-				'secret' => $this->settings['secret'],
-				'cookie' => true,
-			)
-		);
+		if( !empty( $this->settings['appId'] ) ) {
+			$this->fb = new Facebook(
+				array(
+					'appId'  => $this->settings['appId'],
+					'secret' => $this->settings['secret'],
+					'cookie' => true,
+				)
+			);
+		}
 	}
 	public function get_event_query() {
+
+		if( empty( $this->settings['appId'] ) ) {
+			return null;
+		}
 
 		if ( true === ( $events = get_transient( Facebook_Events::$PREFIX ) ) ) {
 			return $events;
