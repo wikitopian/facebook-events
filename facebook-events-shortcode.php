@@ -34,6 +34,10 @@ class Facebook_Events_Shortcode {
 			echo '</li>' . "\n";
 		}
 		echo "</ul>\n";
+
+		if( empty( $events ) ) {
+			echo 'No Upcoming Events';
+		}
 	}
 }
 
