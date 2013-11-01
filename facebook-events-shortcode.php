@@ -28,12 +28,12 @@ class Facebook_Events_Shortcode {
 			echo '<br /><span id="date">' . esc_textarea( $event['start_time'] ) . '</span>';
 			echo '</h3>' . "\n";
 			echo "<a href=\"{$link}\">\n";
-			echo "<img src='" . $event['pic'] . "' class='alignright' />\n";
+			echo "<img src='" . $event['pic_small'] . "' class='alignright' />\n";
 			echo "</a>\n";
 			echo '<p>' . $event['description'] . '</p>' . "\n";
 			echo '</li>' . "\n";
 		}
-		echo "</ul>\n";
+		echo "</ul>\n<hr />\n";
 
 		if( empty( $events ) ) {
 			echo 'No Upcoming Events';
