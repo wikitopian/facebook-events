@@ -28,6 +28,7 @@ class Facebook_Events {
 		$this->do_settings();
 
 		$this->facebook  = new Facebook_Events_Facebook( $this->settings );
+
 		$this->menu      = new Facebook_Events_Menu( $this->settings );
 		$this->shortcode = new Facebook_Events_Shortcode( $this->settings );
 
@@ -39,11 +40,13 @@ class Facebook_Events {
 	}
 	public function do_settings() {
 		$defaults = array(
-			'appId'      => false,
+			'app_id'      => false,
 			'secret'     => false,
 			'page_id'    => false,
 			'max_events' => 10,
 		);
+
+		//delete_option( self::$PREFIX );
 
 		$this->settings = get_option( self::$PREFIX, $defaults );
 		update_option( self::$PREFIX, $this->settings );

@@ -1,6 +1,7 @@
 <?php
 
-require_once( 'facebook-php-sdk/src/facebook.php' ); // official FB lib
+require_once( 'facebook-php-sdk-v4/src/Facebook/Facebook.php' ); // official FB lib
+require_once( 'facebook-php-sdk-v4/src/Facebook/Exceptions/FacebookSDKException.php' );
 
 class Facebook_Events_Facebook {
 	private $settings;
@@ -10,10 +11,10 @@ class Facebook_Events_Facebook {
 	public function __construct( $settings ) {
 		$this->settings = $settings;
 
-		if( !empty( $this->settings['appId'] ) ) {
-			$this->fb = new Facebook(
+		if( !empty( $this->settings['app_id'] ) ) {
+			$this->fb = new \Facebook\Facebook(
 				array(
-					'appId'  => $this->settings['appId'],
+					'appId'  => $this->settings['app_id'],
 					'secret' => $this->settings['secret'],
 					'cookie' => true,
 				)
@@ -22,7 +23,7 @@ class Facebook_Events_Facebook {
 	}
 	public function get_event_query() {
 
-		if( empty( $this->settings['appId'] ) ) {
+		if( empty( $this->settings['app_id'] ) ) {
 			return null;
 		}
 
@@ -52,7 +53,5 @@ FQL;
 		return $events;
 	}
 }
-
-
 
 ?>
